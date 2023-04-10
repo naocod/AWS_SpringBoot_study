@@ -11,6 +11,6 @@ public class Lecture {
 	private int id;
 	private String lecture_name;
 	private int lecture_price;
-	private int lecture_id;
+	private int lecturer_id;
 	
 }

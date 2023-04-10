@@ -10,13 +10,13 @@ import lombok.ToString;
 public class LectureReqDto {
 	private String lectureName;
 	private int lecturePrice;
-	private int lectureId;
+	private int lecturerId;
 	
 	public Lecture toEntity() {
 		return Lecture.builder()
 				.lecture_name(lectureName)
 				.lecture_price(lecturePrice)
-				.lecture_id(lectureId)
+				.lecturer_id(lecturerId)
 				.build();
 	}
 
