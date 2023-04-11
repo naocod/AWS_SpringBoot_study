@@ -1,5 +1,7 @@
 package com.web.study.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.web.study.domain.entity.Course;
@@ -8,4 +10,6 @@ import com.web.study.domain.entity.Course;
 public interface CourseRepository {
 	
 	public int saveCourse(Course course);
+	public List<Course> getCourseAll();
+	public Course fintCourseById(int id);
 }

@@ -1,5 +1,7 @@
 package com.web.study.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.web.study.domain.entity.Student;
@@ -7,4 +9,6 @@ import com.web.study.domain.entity.Student;
 @Mapper
 public interface StudentRepository {
 	public int saveStudent(Student student);
+	public List<Student> getStudentAll();
+	public Student fintStudentById(int id);
 }
