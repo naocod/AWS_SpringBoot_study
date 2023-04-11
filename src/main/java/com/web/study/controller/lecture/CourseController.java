@@ -35,7 +35,7 @@ public class CourseController {
 		return ResponseEntity.ok().body(DataResponseDto.of(courseService.getCourseAll()));
 	}
 	
-	@GetMapping("/course/all")
+	@GetMapping("/course/{id}")
 	public ResponseEntity<? extends ResponseDto> getCourseById(@PathVariable int id) {
 	
 		return ResponseEntity.ok().body(DataResponseDto.of(courseService.findCourseById(id)));

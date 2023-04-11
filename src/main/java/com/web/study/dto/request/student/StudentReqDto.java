@@ -15,8 +15,8 @@ public class StudentReqDto {
 	
 	public Student toEntity() {
 		return Student.builder()
-				.name(name)
-				.birth_date(birthDate)
+				.sdm_name(name)
+				.sdm_birth(birthDate)
 				.build();
 		// 필요없는 getter와 setter를 생성하지 않기 위해서 entity로 변환하는 객체 생성
 	}

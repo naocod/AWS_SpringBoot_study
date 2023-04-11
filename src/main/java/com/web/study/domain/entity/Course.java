@@ -10,9 +10,9 @@ import lombok.Getter;
 @Builder
 @Getter
 public class Course {
-	private int id;
-	private int lecture_id;
-	private int student_id;
+	private int csm_id;
+	private int ltm_id;
+	private int sdm_id;
 	private LocalDate registe_date;
 	private Lecture lecture;
 	private Student student;
@@ -20,9 +20,9 @@ public class Course {
 	
 	public CourseRespDto toDto() {
 		return CourseRespDto.builder()
-				.id(id)
-				.lectureId(lecture_id)
-				.studentId(student_id)
+				.id(csm_id)
+				.lectureId(ltm_id)
+				.studentId(sdm_id)
 				.registeDate(registe_date)
 				.build();
 	}

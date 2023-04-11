@@ -11,17 +11,17 @@ import lombok.Getter;
 @Getter
 //@Alias("S1")
 public class Student {
-	private int id;
-	private String name;
-	private LocalDate birth_date;
+	private int sdm_id;
+	private String sdm_name;
+	private LocalDate sdm_birth;
 	
 	// Allargu를 쓰면 전체를 생성해줘야하기 때문에 필요한 것만 생성하기 위해 builder로 생성 + getter 필수
 	
 	public StudentRespDto toDto() {
 		return StudentRespDto.builder()
-				.id(id)
-				.name(name)
-				.birthDate(birth_date)
+				.id(sdm_id)
+				.name(sdm_name)
+				.birthDate(sdm_birth)
 				.build();
 	}
 }
