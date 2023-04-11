@@ -1,5 +1,7 @@
 package com.web.study.domain.entity;
 
+import com.web.study.dto.response.LectureRespDto;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,5 +19,22 @@ public class Lecture {
 	private int ltm_price;
 	private int itm_id;
 	private Instructor instructor;
+	
+	
+	public LectureRespDto toDto() {
+		
+		String instuctorName = null;
+		
+		if(instructor != null) {
+			instuctorName = instructor.getItm_name();
+		}
+		
+		return LectureRespDto.builder()
+				.lectureId(itm_id)
+				.lectureName(ltm_name)
+				.lecturePrice(ltm_price)
+				.instructorName(instuctorName)
+				.build();
+	}
 	
 }

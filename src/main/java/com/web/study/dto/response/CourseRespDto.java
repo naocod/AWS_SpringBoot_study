@@ -11,10 +11,11 @@ import lombok.Getter;
 @Builder
 @Getter
 public class CourseRespDto {
-	private int id;
-	private int lectureId;
-	private int studentId;
+	private int courseId;
 	private LocalDate registeDate;
-	private Lecture lecture;
-	private Student student;
+	private String lectureName;
+	private int lecturePrice;
+	private String instructorName;
+	private String studentName;
+	
 }

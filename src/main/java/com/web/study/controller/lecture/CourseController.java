@@ -34,5 +34,11 @@ public class CourseController {
 	
 		return ResponseEntity.ok().body(DataResponseDto.of(courseService.getCourseAll()));
 	}
+	
+	@GetMapping("/search/courses") 							// @RequestParam 생략
+	public ResponseEntity<? extends ResponseDto> seachCourse(int type, String searchValue) {
+	
+		return ResponseEntity.ok().body(DataResponseDto.of(courseService.seachCourse(type, searchValue)));
+	}
 
 }
