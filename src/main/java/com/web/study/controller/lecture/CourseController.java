@@ -29,16 +29,10 @@ public class CourseController {
 		return ResponseEntity.ok().body(ResponseDto.ofDefault());
 	}
 	
-	@GetMapping("/course/all")
+	@GetMapping("/courses")
 	public ResponseEntity<? extends ResponseDto> getCourseAll() {
 	
 		return ResponseEntity.ok().body(DataResponseDto.of(courseService.getCourseAll()));
-	}
-	
-	@GetMapping("/course/{id}")
-	public ResponseEntity<? extends ResponseDto> getCourseById(@PathVariable int id) {
-	
-		return ResponseEntity.ok().body(DataResponseDto.of(courseService.findCourseById(id)));
 	}
 
 }

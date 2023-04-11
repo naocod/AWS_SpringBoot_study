@@ -14,8 +14,8 @@ public class LectureReqDto {
 	
 	public Lecture toEntity() {
 		return Lecture.builder()
-				.ltm__name(lectureName)
-				.ltm__price(lecturePrice)
+				.ltm_name(lectureName)
+				.ltm_price(lecturePrice)
 				.itm_id(instructorId)
 				.build();
 	}
