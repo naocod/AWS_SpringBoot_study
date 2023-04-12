@@ -7,9 +7,11 @@ import com.web.study.domain.entity.Student;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 @Builder
 @Getter
+@ToString
 public class CourseRespDto {
 	private int courseId;
 	private LocalDate registeDate;
