@@ -31,14 +31,14 @@ public class AuthServiceImpl implements AuthService {
 
 	@Override
 	public void registeUser(RegisteUserReqDto registeUserReqDto) {
-		User userEntity = registeUserReqDto.toEntity();
+		User userEntity = registeUserReqDto.toEntity();	// toEntity때 password 암호화
 		
 		userRepository.saveUser(userEntity);	//insert user_mst
 		
 		List<Authority> authorities = new ArrayList<>();
 		authorities.add(Authority.builder().user_id(userEntity.getUser_id()).role_id(1).build());
 		
-		userRepository.addAuthorities(authorities);
+		userRepository.addAuthorities(authorities);	// role 등록
 	}
 	
 	@Override

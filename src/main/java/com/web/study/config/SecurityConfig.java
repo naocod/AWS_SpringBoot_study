@@ -5,11 +5,23 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.web.study.security.jwt.JwtAuthenticationEntryPoint;
+import com.web.study.security.jwt.JwtAuthenticationFilter;
+import com.web.study.security.jwt.JwtTokenProvider;
+
+import lombok.RequiredArgsConstructor;
 
 @EnableWebSecurity	// 원래 기존의 Configuration의 WebSecurity를 안쓰고 새로 만든 @Configuration 객체를 사용하겠다는 것
 @Configuration
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
+	
+	private final JwtTokenProvider jwtTokenProvider;
+	private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 	
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
@@ -20,10 +32,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
+		http.httpBasic().disable();	// 웹 기본 인증 방식
+		http.formLogin().disable();	// 폼태그를 통한 로그인
+		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);	// 세션 비활성화(무상태성)
 		http.authorizeRequests()
 			.antMatchers("/auth/register/**", "/auth/login/**")
 			.permitAll()
+			.antMatchers("/courses")
+			.hasRole("ADMIN")
 			.anyRequest()
-			.authenticated();
+			.authenticated()
+			.and()
+			.addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
+			.exceptionHandling()
+			.authenticationEntryPoint(jwtAuthenticationEntryPoint);
 	}
 }
